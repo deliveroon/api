@@ -21,6 +21,15 @@ export class Mission {
   gps: string;
 
   @Column()
+  numero: string;
+
+  @Column()
+  adresse: string;
+
+  @Column()
+  postal: string;
+
+  @Column()
   token: string;
 
   @Column( {nullable: true } )
