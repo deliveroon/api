@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards, Param, UnauthorizedException, Body, Get } from '@nestjs/common';
+import { Controller, Post, UseGuards, Param, UnauthorizedException, Body, Get, Put } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { getRepository } from 'typeorm';
 import { Location } from 'src/entities/location';
@@ -32,9 +32,10 @@ export class LocationController {
 
     @UseGuards(JwtAuthGuard)
     @Post()
-    private async updateLocation(@Body() location: Location) : Promise<Location>{
+    private async createLocation(@Body() location: Location) : Promise<Location>{
         const locationRepository = getRepository(Location);
         return await locationRepository.save(location);
         
     }
+
 }
