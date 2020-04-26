@@ -91,7 +91,7 @@ export class MissionController {
     @Put(':token')
     private async annulerMission(@Param('token') token : string) : Promise<Mission>{
         const missionRepository = getRepository(Mission);
-        const mission = await missionRepository.find({
+        var mission = await missionRepository.find({
             where: {
                 token: token
             }
