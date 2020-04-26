@@ -96,7 +96,7 @@ export class MissionController {
                 token: token
             }
         })[0];
-
+        return mission;
         if (!mission) throw new UnauthorizedException();
 
         mission.status = {
