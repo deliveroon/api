@@ -15,8 +15,8 @@ export class Article {
 
   @Column()
   description: string;
-
-  @Column()
+  
+  @Column("decimal", { precision: 5, scale: 2 })
   price: number;
 
   @Column()
