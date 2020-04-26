@@ -87,6 +87,24 @@ export class MissionController {
         const missionRepository = getRepository(Mission);
         return await missionRepository.save(mission);
     }
+
+    @Put(':token')
+    private async annulerMission(@Param('token') token : string) : Promise<Mission>{
+        const missionRepository = getRepository(Mission);
+        const mission = await missionRepository.find({
+            where: {
+                token: token
+            }
+        })[0];
+
+        if (!mission) throw new UnauthorizedException();
+
+        mission.status = {
+            id: 4,
+            name: 'ANNULE'
+        };
+        return await missionRepository.save(mission);
+    }
     @UseGuards(JwtAuthGuard)
     @Delete('/:id')
     private async deleteMission(@Param('id') id : number): Promise<Mission>{
